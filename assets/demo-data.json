@@ -1,0 +1,27 @@
+{
+  "disclosure": "The article preserves the revenue-analysis path and basic methods. Entity and metric labels are generic aliases. All amounts and concrete example events are independently fictional, not renamed or scaled production data. The validator is an independent teaching implementation, not a production run.",
+  "metric": "服务收入（通用代称）",
+  "unit": "万元",
+  "period": "同口径、同长度的两个完整演示周期",
+  "before_total": 800,
+  "after_total": 740,
+  "groups": [
+    {"name": "客户甲", "before": 300, "after": 210},
+    {"name": "客户乙", "before": 200, "after": 250},
+    {"name": "其他", "before": 300, "after": 280}
+  ],
+  "hierarchy_example": {
+    "parent": "客户甲",
+    "children": [
+      {"name": "业务单元 A", "before": 180, "after": 100},
+      {"name": "其余单元", "before": 120, "after": 110}
+    ]
+  },
+  "ratio_example": {
+    "metric": "投入回报比（通用代称）",
+    "definition": "客户产出金额除以投入金额，衡量客户的投入效果，不等于本服务收入。",
+    "unit": "金额均为万元；比值以百分比表示",
+    "numerators": [4, 12],
+    "denominators": [10, 60]
+  }
+}
