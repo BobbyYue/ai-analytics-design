@@ -35,52 +35,154 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 @media(max-width:900px){.scheme-overview,.handoff-path{grid-template-columns:1fr;gap:12px}.scheme-overview li{padding:13px 0}.handoff-path li{padding:18px}.chapter>details{padding-left:10px;padding-right:10px}}
 @media(max-width:760px){.method-path li{grid-template-columns:30px minmax(0,1fr);gap:5px 10px}.method-path li span{grid-column:2}.branch-example{padding:18px}.table-wrap th,.table-wrap td{padding:12px}}
 @media print{body{background:var(--paper);font-size:11pt;line-height:1.7}.shell{display:block;padding:0;max-width:none}aside,.skip,.demo-controls{display:none}h1{font-size:31pt}h2{font-size:21pt}.chapter{break-before:page;margin-top:0;padding-top:15pt}.chapter h2,h3{break-after:avoid}.table-wrap{overflow:visible;max-height:none}table{min-width:0;font-size:10pt}tr{break-inside:avoid}.definition-card,figure,.demo,.comparison{break-inside:avoid}.pipeline{display:block}.pipeline li{margin:7pt 0}.pipeline li::after{display:none}.chart-wrap .chart{display:none!important}.chart-wrap .chart-fallback{display:block!important}.sources{break-before:page}.small,.note,figcaption,.scope-note{font-size:10pt}details:not([open])>*:not(summary){display:block}}
+/* Scoped overview: compact relationships with expandable working detail. */
+#structure .oa-plan{margin:24px 0 12px}
+#structure .oa-plan-title{margin:0 0 14px;color:var(--ink);font-size:20px;font-weight:700;line-height:1.5}
+#structure .oa-cycle{position:relative;padding-left:26px}
+#structure .oa-loop-line{position:absolute;left:1px;top:30px;bottom:31px;width:21px;border:2px dashed var(--accent2);border-right:0;border-radius:10px 0 0 10px;pointer-events:none}
+#structure .oa-loop-line::after{content:'';position:absolute;right:-1px;top:-6px;width:8px;height:8px;border-top:2px solid var(--accent2);border-right:2px solid var(--accent2);transform:rotate(45deg)}
+#structure .oa-foundation{display:grid;grid-template-columns:88px minmax(0,1fr);gap:14px;align-items:center;padding:14px 16px;background:var(--bg2);border-top:2px solid var(--accent);scroll-margin-top:30px}
+#structure .oa-foundation h3{font-size:16px;line-height:1.5;margin:0}
+#structure .oa-foundation-list{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:0;margin:0}
+#structure .oa-foundation-list a{font-size:15px;font-weight:700;text-decoration:none}
+#structure .oa-foundation-list span{display:block;font-size:14px;line-height:1.6;color:var(--muted)}
+#structure .oa-down{margin:6px 0;text-align:center;font-size:14px;line-height:1.65;color:var(--accent)}
+#structure .oa-down>span{margin-right:7px}
+#structure .oa-run{padding:14px 16px 12px;background:var(--paper);border:1px solid var(--rule)}
+#structure .oa-phase{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+#structure .oa-phase h3{margin:0;font-size:16px;line-height:1.5}
+#structure .oa-phase>span{font-size:14px;line-height:1.6;color:var(--muted)}
+#structure .oa-steps{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding:0;margin:0}
+#structure .oa-step{position:relative;min-width:0}
+#structure .oa-step:not(:last-child)::after{content:'→';position:absolute;right:-20px;top:1px;font-size:20px;line-height:1.5;color:var(--accent)}
+#structure .oa-step h4{margin:0 0 4px;font-size:16px;line-height:1.6}
+#structure .oa-step h4 span{font-size:14px;font-weight:400;color:var(--accent);margin-right:5px}
+#structure .oa-step>p{margin:0;font-size:14px;line-height:1.65;color:var(--muted)}
+#structure .oa-result{border-top:1px solid var(--rule);margin-top:9px;padding-top:7px;font-size:14px;line-height:1.65}
+#structure .oa-result span{display:block;color:var(--muted);font-size:12px}
+#structure .oa-check{padding:8px 11px;margin:12px 0 0;background:var(--warm);border-left:2px solid var(--accent2);font-size:14px;line-height:1.7}
+#structure .oa-check strong{color:var(--accent2);margin-right:8px}
+#structure .oa-improve{padding:11px 16px;background:var(--paper);border:1px dashed var(--accent2);font-size:14px;line-height:1.7}
+#structure .oa-improve-flow{display:flex;align-items:baseline;gap:9px 16px;flex-wrap:wrap}
+#structure .oa-improve-flow h3{font-size:16px;line-height:1.5;margin:0;color:var(--accent2)}
+#structure .oa-improvement-steps{list-style:none;display:flex;flex-wrap:wrap;padding:0;margin:0;gap:0}
+#structure .oa-improvement-steps li:not(:last-child)::after{content:'→';display:inline-block;margin:0 8px;color:var(--accent2)}
+#structure .oa-return{margin:5px 0 0;color:var(--muted);font-size:14px}
+#structure .oa-return a{color:var(--accent2);font-weight:700}
+#structure .oa-detail{margin:12px 0 26px}
+#structure .oa-detail h3{font-size:18px;margin:20px 0 10px}
+#structure .oa-detail dl{display:grid;grid-template-columns:125px minmax(0,1fr);gap:0 18px;margin:0}
+#structure .oa-detail dt,#structure .oa-detail dd{font-size:15px;line-height:1.85;border-top:1px solid var(--rule);padding:12px 0;margin:0}
+#structure .oa-detail dt{font-weight:700;color:var(--accent)}
+#structure .oa-detail dd p{font-size:15px;margin:0 0 5px}
+#structure .oa-detail dd p:last-child{margin:0}
+#structure .oa-detail .oa-detail-output{color:var(--muted)}
+#structure .oa-detail ol{padding-left:1.4em;font-size:15px}
+@media(max-width:1000px){#structure .oa-foundation{grid-template-columns:1fr;gap:8px}#structure .oa-steps{gap:19px}#structure .oa-step:not(:last-child)::after{right:-17px;font-size:18px}}
+@media(max-width:760px){#structure .oa-cycle{padding-left:20px}#structure .oa-loop-line{width:16px}#structure .oa-foundation,#structure .oa-run,#structure .oa-improve{padding:12px}#structure .oa-foundation-list{grid-template-columns:1fr;gap:5px}#structure .oa-foundation-list li{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}#structure .oa-steps{grid-template-columns:1fr;gap:22px}#structure .oa-step{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}#structure .oa-step h4{grid-column:1}#structure .oa-step>p{grid-column:1}#structure .oa-result{grid-column:2;grid-row:1 / span 2;border-top:0;border-left:1px solid var(--rule);padding:0 0 0 12px;margin:0}#structure .oa-step:not(:last-child)::after{content:'↓';left:4px;right:auto;top:auto;bottom:-22px}#structure .oa-detail dl{grid-template-columns:1fr;gap:0}#structure .oa-detail dt{padding-bottom:3px}#structure .oa-detail dd{border-top:0;padding-top:0}#structure .oa-improve-flow{gap:5px}#structure .oa-improvement-steps li:not(:last-child)::after{margin:0 5px}}
+@media print{#structure .oa-plan{break-inside:avoid}#structure .oa-cycle{padding-left:0}#structure .oa-loop-line{display:none}#structure .oa-steps{grid-template-columns:repeat(4,minmax(0,1fr))}#structure .oa-step{display:block}#structure .oa-step:not(:last-child)::after{content:'→';left:auto;right:-18px;top:1px;bottom:auto}#structure .oa-result{border-left:0;border-top:1px solid var(--rule);padding:7px 0 0;margin-top:9px}#structure .oa-detail{break-inside:auto}#structure .oa-detail dd{break-inside:avoid}}
+/* Chapter 8: compact sequence, adjacent checks and optional full requests. */
+#starter .start-prep{margin:0 0 20px;padding-left:20px;font-size:16px;line-height:1.75}
+#starter .start-prep li{margin:6px 0}
+#starter .start-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:22px 0 8px;padding:14px 0;border-top:2px solid var(--accent);border-bottom:1px solid var(--rule)}
+#starter .start-path a{position:relative;text-decoration:none;font-size:16px;font-weight:700}
+#starter .start-path a:not(:last-child)::after{content:'→';position:absolute;right:-19px;color:var(--muted)}
+#starter .start-path span{font-size:14px;font-weight:400;margin-right:5px;color:var(--muted)}
+#starter .start-steps{list-style:none;margin:0;padding:0}
+#starter .start-steps>li{padding:24px 0;border-bottom:1px solid var(--rule);scroll-margin-top:25px}
+#starter .start-steps h3{font-size:21px;margin:0 0 13px;line-height:1.5}
+#starter .start-num{color:var(--accent);font-size:16px;margin-right:10px}
+#starter .start-row{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px}
+#starter .start-row>div{min-width:0}
+#starter .start-steps p{font-size:16px;line-height:1.75;margin:0 0 10px}
+#starter .start-row .start-label{display:block;font-size:14px;color:var(--muted);margin-bottom:4px}
+#starter .start-check{border-left:2px solid var(--accent);padding-left:15px}
+#starter .start-check .start-label{color:var(--accent);font-weight:700}
+#starter .start-quote{margin:12px 0 8px;padding:12px 16px;background:var(--bg2);font-size:16px;line-height:1.75}
+#starter .start-steps .start-note{font-size:14px;line-height:1.75;color:var(--muted);margin:10px 0 0}
+#starter details{margin:12px 0 0;padding:0;border:0;border-top:1px dashed var(--rule);font-size:16px}
+#starter summary{padding:10px 0;font-size:15px;line-height:1.6}
+#starter details[open] summary{margin-bottom:0}
+#starter details blockquote{margin:4px 0 12px;padding:10px 15px;border-left:2px solid var(--rule);font-size:16px;line-height:1.75;background:var(--paper)}
+#starter .start-diff{margin:15px 0 10px;padding:12px 16px;background:var(--paper);border:1px solid var(--rule)}
+#starter .start-diff figcaption{margin:0 0 8px;font-size:14px;color:var(--muted)}
+#starter .start-diff-values{display:grid;grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr);gap:10px;align-items:center}
+#starter .start-diff-values p{margin:0;font-size:14px;color:var(--muted)}
+#starter .start-diff-values strong{display:block;font-size:23px;line-height:1.5;color:var(--ink)}
+#starter .start-diff-values>span{font-size:25px;text-align:center;color:var(--accent2)}
+#starter .start-tests{list-style:none;padding:0;margin:12px 0}
+#starter .start-tests li{display:grid;grid-template-columns:125px minmax(0,1fr);gap:14px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:16px;line-height:1.75}
+#starter .start-tests strong{font-weight:700}
+#starter .start-tests li:last-child{border-bottom:0}
+#starter .start-next{font-size:16px;margin:20px 0 0}
+@media(max-width:700px){#starter .start-row{grid-template-columns:1fr;gap:10px}#starter .start-check{padding-left:12px}#starter .start-tests li{grid-template-columns:1fr;gap:2px}}
+@media(max-width:540px){#starter .start-path{grid-template-columns:1fr;gap:14px;padding:12px 0}#starter .start-path a:not(:last-child)::after{content:'↓';right:auto;left:0;bottom:-17px;font-size:14px}#starter .start-diff{padding:10px}#starter .start-diff-values{gap:5px;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)}#starter .start-diff-values strong{font-size:20px}}
+@media print{#starter .start-path{display:none}#starter .start-steps>li{break-inside:auto}#starter .start-row{grid-template-columns:1fr}#starter .start-diff{break-inside:avoid}#starter details{break-inside:auto}#starter details>blockquote,#starter details>p{display:block}#starter .start-steps p,#starter .start-tests li,#starter details blockquote{font-size:11pt}#starter .start-steps .start-note{font-size:10pt}}
+/* End chapter 8 scoped layout. */
 </style>
 </head>
 <body>
 <a class="skip" href="#opening">跳到正文</a>
 <div class="shell">
-<aside id="toc"><div class="brand">AI 分析方案</div><button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">查看目录</button><nav id="nav" aria-label="章节目录"><a href="#structure">01　先看整体思路</a><a href="#knowledge">02　理解业务</a><a href="#metrics">03　统一计算</a><a href="#modules">04　安排分析</a><a href="#reliability">05　检查结果</a><a href="#writing">06　讲清结论</a><a href="#efficiency">07　减少重复工作</a><a href="#notes">材料说明</a></nav><div class="tools"><button id="print" type="button">打印 / PDF</button></div><p class="side-note">从方案出发，逐章展开。<br>OneAsk 只作实践案例。</p></aside>
+<aside id="toc"><div class="brand">AI 分析方案</div><button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav">查看目录</button><nav id="nav" aria-label="章节目录"><a href="#structure">01　先看整体思路</a><a href="#knowledge">02　理解业务</a><a href="#metrics">03　统一计算</a><a href="#modules">04　安排分析</a><a href="#reliability">05　检查结果</a><a href="#writing">06　讲清结论</a><a href="#efficiency">07　减少重复工作</a><a href="#starter">08　从零搭建</a><a href="#notes">材料说明</a></nav><div class="tools"><button id="print" type="button">打印 / PDF</button></div></aside>
 <main>
 <header id="opening">
 <p class="kicker">AI 数据分析 · 设计与实践</p>
 <h1>把 AI 数据分析，<span>做成可复用的方案</span></h1>
 <p class="dek">从理解业务、算清指标，到安排分析、检查结果与减少重复工作。</p>
-<p class="intro">让 AI 回答一次问题，与让它持续按专业要求完成分析，中间还隔着一套准备工作：业务背景要整理，指标算法要统一，分析经验要能重复使用，结果还要有办法核对。</p>
-<p class="intro">本文讨论这套方案怎样搭建。OneAsk 是贯穿文章的实践案例，不是需要先学会使用的产品。我们借一个收入分析问题，逐步解释每项设计为什么需要、怎样起作用，以及哪些经验可以用于其他分析任务。<sup><a href="#cite-1">[1]</a></sup></p>
-<p class="scope-note">案例保留收入分析的路径与基本方法，名称使用通用代称，数字与具体事件独立虚构。文中的演示不是 OneAsk 真实运行或性能评测；本文不把方案设计等同于准确率或提速保证。</p>
+<p class="intro">一次回答可以靠临场提示；可复用的分析还需要统一业务背景、指标算法和分析方法，并能逐步核对结果。</p>
+<p class="intro">以 OneAsk 的广告收入分析实践为例，看一套可复用的 AI 分析方案怎样搭建。<sup><a href="#cite-1">[1]</a></sup></p>
+<p class="scope-note">案例沿用广告收入分析的方法，名称采用通用代称，数字与事件独立虚构。演示用于解释设计，不代表真实运行结果、准确率或提速效果。</p>
 </header>
 
 <section class="chapter" id="structure">
 <span class="kicker">01 / 整体方案</span><h2>先把分析需要的准备做好，再让 AI 执行</h2>
-<p class="lead">一条“分析上周收入为什么下降”的要求，并没有说明收入怎么算、哪些解释值得检查、什么样的结果才算可信。这些往往是分析师凭经验补上的。</p>
-<p>搭建方案，就是把这部分经验逐步整理出来，让每次分析有共同的起点，不必从一句话重新猜测全部要求。</p>
-<figure>
-<p class="figure-title">建设顺序：先准备依据，再安排工作，最后完善交付</p>
-<ol class="scheme-overview">
-<li><b>准备知识与算法</b><span>先理解业务关系，再明确数字怎么算。</span><a href="#knowledge">第 2—3 章</a></li>
-<li><b>安排分析与核查</b><span>把专业经验变成分析步骤，再逐步检查结果。</span><a href="#modules">第 4—5 章</a></li>
-<li><b>改善表达与效率</b><span>让结论易读，同时减少不必要的重复工作。</span><a href="#writing">第 6—7 章</a></li>
+<p class="lead">一条“分析上周广告收入为什么下降”的要求，并没有说明收入怎么算、哪些解释值得检查、什么样的结果才算可信。这些往往是分析师凭经验补上的。</p>
+<p>把这些经验提前整理好，每次分析按需使用；运行中发现的问题，经过核实和验证后再用于改进规则。</p>
+<figure class="oa-plan" aria-labelledby="oa-plan-title">
+<figcaption class="oa-plan-title" id="oa-plan-title">一次分析如何推进，反馈如何进入下一次</figcaption>
+<div class="oa-cycle">
+<div class="oa-loop-line" aria-hidden="true"></div>
+<div class="oa-foundation" id="oa-foundation">
+<h3>分析前的准备</h3>
+<ul class="oa-foundation-list">
+<li><a href="#knowledge">业务知识</a><span>概念、关系、证据</span></li>
+<li><a href="#metrics">指标与数据规则</a><span>定义、算法、来源</span></li>
+<li><a href="#modules">分析与检查方法</a><span>步骤、检查、表达</span></li>
+</ul>
+</div>
+<p class="oa-down"><span aria-hidden="true">↓</span>按本次问题选用</p>
+<div class="oa-run">
+<div class="oa-phase"><h3>每次分析</h3><span>每步检查通过，再交给下一步</span></div>
+<ol class="oa-steps" aria-label="一次收入分析的四个主要环节">
+<li class="oa-step" id="oa-step-question"><h4><span aria-hidden="true">01</span>明确问题</h4><p>定对象、周期、基准</p><div class="oa-result"><span>交给下一步</span>范围与比较条件</div></li>
+<li class="oa-step" id="oa-step-data"><h4><span aria-hidden="true">02</span>取数并核对</h4><p>查缺漏、查重复、对总数</p><div class="oa-result"><span>交给下一步</span>核对后的数据与来源</div></li>
+<li class="oa-step" id="oa-step-analysis"><h4><span aria-hidden="true">03</span>定位并解释</h4><p>定位变化、核对正反证据</p><div class="oa-result"><span>交给下一步</span>变化与判断依据</div></li>
+<li class="oa-step" id="oa-step-delivery"><h4><span aria-hidden="true">04</span>报告与交付</h4><p>提炼结论、核对交付内容</p><div class="oa-result"><span>交给读者</span>结论、依据与适用范围</div></li>
 </ol>
-<figcaption>这是一条建设路线，不要求读者先了解后文的具体实现。</figcaption>
+<p class="oa-check"><strong>↶ 本次修正</strong>检查未通过 → 返回对应步骤 → 重查受影响的结果</p>
+</div>
+<p class="oa-down"><span aria-hidden="true">↓</span>检查、人工复核与读者反馈</p>
+<div class="oa-improve">
+<div class="oa-improve-flow"><h3>持续改进</h3><ol class="oa-improvement-steps" aria-label="根据反馈更新规则的四个步骤"><li>确认问题</li><li>修改规则</li><li>案例验证</li><li>记录版本</li></ol></div>
+<p class="oa-return">先核实反馈，再修改和验证规则；<a href="#oa-foundation">↶ 验证通过后，更新知识、指标和分析方法</a>，用于后续分析。</p>
+</div>
+</div>
 </figure>
-<p>人的工作是确认业务问题、定义和判断边界；AI 负责理解材料、组织分析与表达；明确的计算则交给程序。各自承担适合的工作，而不是要求模型仅凭语言推理完成所有事情。</p>
-<div class="callout"><h3>与临时写一个 Prompt 相比，差别在哪里？</h3><p>并不是 Skill 这个名称让模型更聪明，而是背景、算法、方法与质量要求被事先整理，并能在下一次继续使用。一条 Prompt 也可能完成优秀分析；给它同样的配套条件，也可以获得类似能力。需要建设的是这些条件，而不是一个更长的提示词。</p></div>
-<p>实际搭建时，先选一个分析师已经熟练掌握的问题，整理一份认可的分析案例，逐步跑通从数据到报告的全过程，再扩展到其他问题。范围越大，定义和方法的维护成本也越高。</p>
-<p class="chapter-next">先从第一项准备开始：业务资料很多，怎样整理，才能真正帮助 AI 判断？</p>
+<p>人确认业务问题、指标定义和结论边界；AI 理解材料、组织分析与表达；规则明确的计算交给程序。</p>
+<div class="callout"><h3>与临时写一个 Prompt 相比，差别在哪里？</h3><p>背景、算法、方法与检查要求被事先整理，下一次不必重新交代。能力来自这些配套条件，Skill 只是组织它们的方式；一条 Prompt 获得同样的条件，也可能完成同样好的分析。</p></div>
+<p>搭建时，先选一个分析师熟悉的问题，用一份认可的案例跑通从数据到报告的全过程，再扩展场景。范围越大，定义和方法的维护成本越高。</p>
 </section>
 
 <section class="chapter" id="knowledge">
 <span class="kicker">02 / 业务知识</span><h2>给 AI 的不只是资料，还要有判断依据</h2>
 <p class="lead">资料能解释“这是什么”；专业分析还需要知道“什么变化可能意味着什么，以及什么情况下不能这样判断”。</p>
-<p>用收入分析作例子：一家服务方从客户使用服务中获得收入；客户则关心使用后自己的经营效果。服务方收入下降，既可能是服务效果变差，也可能是客户整体需求减少。两个解释，需要不同的证据。</p>
-<div class="definition-card"><p class="label">把一条分析经验整理成可使用的知识</p><h3>客户投入减少，不一定是服务效果变差</h3>
-<dl class="definition"><dt>为什么可能</dt><dd>效果变差可能使客户减少投入；客户整体收缩也可能带来同样变化。</dd><dt>要看什么</dt><dd>客户整体投入有没有下降？使用效果有没有变差？投入是否转去了别处？还要看这些变化的先后。</dd><dt>什么会反驳</dt><dd>如果效果稳定，客户在各种服务上的投入都减少，就不应直接把原因归为本服务能力下降。</dd></dl></div>
-<p>像这样，把概念、关系、适用条件、证据和反例一起保存，就形成了可供分析使用的<strong>知识库</strong>。它不是把文档堆在一起，也不是给每种现象预写一个答案。</p>
-<p>在 OneAsk 的实践中，收入分析会结合多类经营和技术证据来判断。值得借鉴的不是记住某个业务结论，而是把“支持这个判断需要什么、什么证据会推翻它”一起教给 AI。</p>
+<p>以广告平台为例，客户是投放广告的广告主。下文“客户收入下降”指<strong>这位客户为平台带来的广告收入减少</strong>，不是客户自己的营业收入下降。要解释变化，需要区分投放效果、客户计划和外部竞争等不同原因。</p>
+<div class="definition-card"><p class="label">把一条分析经验整理成可使用的知识</p><h3>客户少投广告，不一定是投放效果变差</h3>
+<dl class="definition"><dt>为什么可能</dt><dd>广告带来的回报下降，可能使客户减少投放；客户主动缩减整体获客计划、调整预算分配，也可能带来同样变化。</dd><dt>要看什么</dt><dd>广告投放回报是否下降？客户是否新建或暂停广告计划、调整预算和效果要求？各渠道合计的获客量、本平台在其中的占比有没有变化？还要核对先后顺序。</dd><dt>什么会反驳</dt><dd>如果本平台的投放回报和获客占比都稳定，而客户各渠道合计的获客量下降，就应先核查客户是否缩减整体计划，不能直接认定本平台广告效果变差。</dd></dl></div>
+<p>把概念、关系、适用条件、证据和反例一起保存，就形成了可供分析使用的<strong>知识库</strong>。它提供判断依据，而不是替每种现象预写答案。OneAsk 的收入分析据此检查客户计划、投放效果、系统预估、投放故障和外部竞争，具体方法见第四章。</p>
 <details id="knowledge-detail"><summary>知识怎样维护，才能避免过期经验继续被使用？</summary><p>每条知识还需要来源、适用范围、有效时间和维护责任。同一种现象，在不同产品和规则下可能有不同含义，不能把某个案例的解释直接变成通用结论。</p><p>这里的“教给 AI”，主要指运行时让模型读取并使用这些材料，不是重新训练模型参数。方便检索只是起点，来源是否可信、规则是否仍有效同样重要。</p></details>
-<p class="takeaway"><strong>可迁移的做法：把专业知识写成“判断依据”，而不只是“术语解释”。</strong></p>
-<p class="chapter-next">知道了应该看什么，接下来还要解决：这些业务概念怎样变成大家都认可的数字？</p>
+<p class="chapter-next">这些知识指出应该看什么。接下来，要把“投放效果”“收入”等概念变成口径明确、可以核对的数字。</p>
 </section>
 
 <section class="chapter" id="metrics">
@@ -88,21 +190,26 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <p class="lead">“收入下降”里的“收入”是一个指标；哪些金额算进去、按哪个日期归属、用什么单位，就是它的计算口径。含义相似，不代表算法相同。</p>
 <p>知识库帮助 AI 理解业务；<strong>指标库</strong>则把业务概念落实到可重复计算的规则，并指出数据在哪里。两者相连，但不能互相替代。</p>
 <div class="three-up">
-<div><span class="small">业务含义</span><h3>这个数指什么</h3><p>例如“服务收入”，是服务方的收入，不是客户自己的产出。</p></div>
+<div><span class="small">业务含义</span><h3>这个数指什么</h3><p>例如“广告收入”，指平台从客户投放中获得的收入，不是客户通过广告获得的回报。</p></div>
 <div><span class="small">计算规则</span><h3>按什么规则算</h3><p>限定范围、日期和金额单位，再汇总；同一金额不能重复累计。</p></div>
 <div><span class="small">数据位置</span><h3>从哪里得到它</h3><p>将客户、日期、金额等概念对应到可信的数据字段，不让 AI 临时猜。</p></div>
 </div>
-<p>三者共同组成一份定义。后续取数按它选择范围，计算按它处理数据，报告也按它说明名称、单位和周期。定义不应只放在旁边供人阅读，而要成为实际工作的依据。</p>
-<div class="callout"><h3>例如：一句“收入下降 7.5%”，先要能回答这些问题</h3><p>比较的是哪两个完整周期？客户范围有没有变化？两期是否使用同一金额单位？是否有尚未到齐的数据？这些条件不一致，算术正确也可能回答错问题。</p></div>
-<details id="metric-detail"><summary>展开指标条目：时间、缺失值与比例合并怎样约定？</summary>
-<dl class="definition"><dt>范围与粒度</dt><dd>说明哪些对象被纳入、每行代表什么对象和时间；关联数据时避免重复累计。整体与下钻明细必须使用同一范围。</dd><dt>时间与单位</dt><dd>登记日期依据、时区、金额单位和数据更新到哪一天。比较使用长度相同、星期结构可比的完整周期；不把不完整周期直接当作完整周期。</dd><dt>缺失与异常</dt><dd>缺少金额或关键对象信息时保留异常清单，缺数不自动当零。排除哪些记录、为什么排除，都应能查到。</dd><dt>人工对数</dt><dd>按同一条件查看明细和汇总数，确认计算对象没有遗漏、金额没有重复；每个更细层级的结果应能加回整体。</dd></dl>
-<div class="formula"><p class="small">辅助指标用“投入回报比”代称：客户产出金额 ÷ 投入金额，用于观察客户的投入效果，不等于本服务收入。虚构的两个单元分别产出 4 万元、12 万元，投入 10 万元、60 万元。</p><div class="formula-grid"><div><p>合并后先加总产出、投入</p><b>≈ 22.9%</b><p>（4 + 12）÷（10 + 60）</p></div><div class="wrong"><p>不能简单平均两个单元的比例</p><b>≠ 30%</b><p>（40% + 20%）÷ 2</p></div></div></div>
-<p>因此，写下一个除法公式仍不够：产出观察到哪一天、投入属于哪个周期、如何合并不同单元，都属于定义。SQL 能运行，不代表它算的就是业务想问的数。</p>
-
-</details>
-<p>在 OneAsk 这样的方案中，指标定义把业务理解与数据操作连接起来。推广到其他任务时，具体名称和公式会变，但“含义—算法—数据位置”的关系仍然成立。</p>
-<p class="takeaway"><strong>设计的价值不只是少算错一次，而是减少不同环节各自解释同一个指标的空间。</strong></p>
-<p class="chapter-next">现在有了业务依据，也能算出可比的数字。下一步，怎样让 AI 按专业顺序展开分析？</p>
+<div id="metric-workflow">
+<h3 id="metric-rules-title">指标库怎样参与一次 AI 分析？</h3>
+<p>用户问：<strong>“客户甲上周的广告投放效果，比前一周变差了吗？”</strong>假设已约定用“投放回报”（广告带来的回报金额 ÷ 对应广告花费）观察效果。除了公式，AI 还需要以下规则：</p>
+<div class="table-wrap" id="metric-detail" role="region" aria-labelledby="metric-rules-title" tabindex="0">
+<table aria-label="指标规则在 AI 分析各环节中的使用与人工核对">
+<thead><tr><th scope="col">分析环节</th><th scope="col">AI 应如何使用指标库</th><th scope="col">人可以核对什么</th></tr></thead>
+<tbody>
+<tr><td>1. 选对指标</td><td>读取含义和数据字段：这里看广告带来的用户为客户产生的回报，不用平台广告收入代替。</td><td>指标是否回答了问题？客户、应用范围是否正确？</td></tr>
+<tr><td>2. 选取可比数据</td><td>统一日期归属、时区、单位和范围；两期等长、完整，回报观察时长一致。数据未到齐，暂不直接比较。</td><td>两期是否都从周一到周日？数据更新到哪天？哪些应用缺数或观察未满？</td></tr>
+<tr><td>3. 按规则汇总</td><td>各应用的回报和花费分别加总后相除，不平均百分比。确认每行对应的对象、日期，避免关联时重复累计。</td><td>明细能否加回整体？用回报、花费两笔总额复算比例。</td></tr>
+<tr><td>4. 说明结果与限制</td><td>沿用取数的名称、范围、单位和周期。缺数不当作零；列出缺失或排除的对象及原因。</td><td>报告条件是否与取数一致？异常有无遗漏？是否把不完整数据写成确定判断？</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>指标库保存的不只是公式，还包括汇总方式、观察周期和缺数处理。</strong>流程实际使用这些规则，并留下取数范围、计算过程和异常清单，AI 就少了临时猜算法的空间，人也有依据复核。</p>
+</div>
 </section>
 
 <section class="chapter" id="modules">
@@ -112,41 +219,37 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <figure><p class="figure-title">收入案例：先确认变化，再定位对象，最后核查原因</p>
 <ol class="handoff-path">
 <li><b>确认变化</b><span>使用已定义的指标，比较完整周期。</span><em>交出：变化幅度与时间范围。</em></li>
-<li><b>定位对象</b><span>计算哪些客户带来减少，哪些带来增长抵消。</span><em>交出：重点客户、对应金额和数据。</em></li>
+<li><b>定位对象</b><span>计算哪些客户收入减少，哪些客户的增长抵消了部分下降。</span><em>交出：重点客户、对应金额和数据。</em></li>
 <li><b>核查原因</b><span>围绕这批客户检查不同解释，而不是重新挑对象。</span><em>交出：支持证据、反证与未知项。</em></li>
-</ol><figcaption>这里只用三步说明交接关系；完整收入分析路径保留在下方展开区。</figcaption></figure>
-<div class="callout"><h3>为什么要传递名单和数据，而不只传一句结论？</h3><p>假设前一步发现下降集中在客户甲，后一步却拿所有客户的平均表现解释原因，研究对象就换了。明确传递客户甲的名单、数据和比较范围，才能让后续分析继续回答同一个问题。</p><p>同样，“客户减少投入”还只是现象。原因步骤需要比较不同解释，并说明哪些证据支持、哪些证据反驳，不能把最容易讲通的故事当作结论。</p></div>
-<p>这就是把熟练分析师的经验教给 AI：不仅告诉它要写哪些标题，还把判断顺序、证据要求和不能跨越的边界写清楚。不同任务可以使用不同模块，但交接必须明确。</p>
-<details id="revenue-case"><summary>展开完整收入案例：分析路径、贡献拆解与原因核查</summary>
-<p>以下沿用 OneAsk 收入分析的路径与基本方法，以通用代称和虚构数字说明。客户可以包含多个可单独分析的经营对象，本文称为“业务单元”。从整体逐层找到这些对象的过程，称为下钻。<sup><a href="#cite-2">[2]</a></sup></p>
-<ol class="method-path" aria-label="收入分析的六个依赖步骤">
-<li><b>确认变化</b><span>先对齐范围与完整周期；看总量、逐日走势和相同星期的变化，区分持续下滑与单日异常。</span></li>
-<li><b>拆解贡献</b><span>按层级找出主要减少对象，把增长抵消单列；每层都保留“其他”和未解释差额。</span></li>
-<li><b>固定核查对象</b><span>原因分析沿用贡献环节选出的客户与业务单元，不重新换一批容易解释的对象。</span></li>
-<li><b>逐项核查原因</b><span>对适用对象检查五类因素，记录支持证据、反向证据和缺失项，不只挑一个顺口的解释。</span></li>
-<li><b>形成经营判断</b><span>把不同维度的证据合起来，比较替代解释，区分现象、可能机制和已获支持的判断。</span></li>
-<li><b>提出对应动作</b><span>动作落到具体对象与证据；说明如何验证、何时改判。没有依据的原因不直接变成行动。</span></li>
-</ol>
-<h3>先算清：下降来自哪里，增长抵消了多少？</h3>
-<p>虚构的前期服务收入为 800 万元，本期为 740 万元，下降 60 万元（7.5%）。如果只找“下降最大的客户”，会漏掉增长的抵消，也无法解释整体差额。</p>
-<figure><p class="figure-title">客户甲减少 90 万元，客户乙增长抵消 50 万元</p><p class="small">全部数据虚构 · 同口径、同长度的完整周期比较 · 单位：万元</p><div class="chart-wrap" id="contribution-wrap"><picture class="chart-fallback"><source media="(max-width:500px)" srcset="assets/contribution-mobile.png"><img src="assets/contribution.png" alt="客户甲300到210，减少90万元；客户乙200到250，增加50万元；其他300到280，减少20万元；整体800到740，减少60万元。"></picture><div class="chart" id="contribution-chart" role="img" aria-label="客户甲变化负90万元、客户乙正50万元、其他负20万元，整体负60万元。"></div></div><figcaption>−90 + 50 − 20 = −60。客户甲对整体净下降的贡献为 150%，因为存在增长抵消；若问它占所有减少金额的多少，分母是 110 万元，而不是 60 万元。</figcaption></figure>
-<div class="branch-example"><p><strong>下钻也要对账，不能在客户层就停住。</strong></p><p>通用层级：整体 → 客户 → 业务单元 → 目标类型 → 服务方式。</p><ul><li>客户甲：300 → 210 万元，减少 <strong>90 万元</strong>。</li><li>其中业务单元 A：180 → 100 万元，减少 <strong>80 万元</strong>；其余单元：120 → 110 万元，减少 <strong>10 万元</strong>。</li><li>继续检查 A 内不同目标和服务方式的变化；每一层都应加回上一层，不能只列几个大项后丢掉剩余部分。</li></ul><p class="small">“业务单元”指客户下可单独分析的经营对象；后两层区分它追求什么目标、采用什么服务方式。以上均为代称。−80 − 10 = −90；本例只展开一条分支，不代表实际流程只分析一个对象。</p></div>
-<div class="definition-card"><p class="label">贡献模块的交接示例 · 金额均为虚构</p><h3>后一步拿到的是对象和证据，不是一句“收入下降”</h3><dl class="definition"><dt>接收</dt><dd>两期同口径总量、各层明细，以及本次使用的定义和数据标识。</dd><dt>交出</dt><dd>客户甲 −90、客户乙 +50、其他 −20 万元；甲内部 A −80、其余 −10 万元。附重点对象清单、对账结果与剩余差额。</dd><dt>继续条件</dt><dd>范围完整、两期金额与变化量逐层闭合、引用当前数据。原因模块必须继承这批重点对象，再逐个确认诊断方法是否适用。</dd><dt>不适用时</dt><dd>保留对象和排除理由，不能静默删除；不适用某项诊断，也不等于从收入总量里移除。</dd><dt>后续限制</dt><dd>贡献只证明“谁带来了多少变化”，并没有证明“为什么变化”。</dd></dl></div>
-<h3>再解释：同一批对象，按五个方向逐项核查</h3>
-<p>每个方向既要有数据，也要写明“它能解释什么、还不能解释什么”。下表是原分析方法的通用表达，不展示内部指标名称或阈值。</p>
-<div class="table-wrap" tabindex="0"><table><caption class="small">原因核查的五个方向 · 名称为通用代称</caption><thead><tr><th scope="col">核查方向</th><th scope="col">观察哪些证据</th><th scope="col">不能直接跳到的结论</th></tr></thead><tbody>
-<tr><td>客户调整</td><td>运行项目数、暂停情况、可用额度、客户对效果的要求。</td><td>“客户减少投入”是现象，还要问为何减少。</td></tr>
-<tr><td>服务表现</td><td>投入回报是否变差，不同服务方式的构成是否变化。</td><td>总体变差可能来自构成变化，不等于每种服务都变差。</td></tr>
-<tr><td>系统判断</td><td>系统预估与实际结果的偏差、偏差方向，以及先后发生的时间。</td><td>技术指标变差，不自动等于收入下降的主要原因。</td></tr>
-<tr><td>运行故障</td><td>发生时间、受影响对象、恢复过程与收入变化是否吻合。</td><td>时间重合不够，还要核对受影响范围与可解释金额。</td></tr>
-<tr><td>外部变化</td><td>客户同类总投入、本服务份额与外部需求变化。</td><td>份额降低不必然由效果下降引起，也可能是投入转移。</td></tr>
+</ol></figure>
+<div class="callout"><h3>定位到客户甲后，下一步就要继续查客户甲</h3><p>在这个虚构案例中，平台收入从 800 万元降到 740 万元：客户甲减少 90 万元，客户乙增加 50 万元，其他客户减少 20 万元。继续拆客户甲，发现其中应用 A 减少 80 万元，其余应用减少 10 万元。<sup><a href="#cite-2">[2]</a></sup></p><p><strong>下一步接收的是客户甲、应用 A 的名单，以及本次明细、指标定义和比较周期。</strong>原因分析据此核查，不能换成所有客户的平均表现。投放效果、客户计划或外部竞争，仍要分别找证据。</p></div>
+<details id="revenue-case"><summary>继续查看：收入分解图与五个原因核查方向</summary>
+<div id="revenue-handoff-example">
+<h3 id="revenue-handoff-title">收入下降了，先确定接下来查谁</h3>
+<p>两期收入减少 60 万元（7.5%）。先核对逐日及相同星期的走势，区分持续下滑与单日异常；若排除异常日作对照，也要保留原结果。</p>
+<figure><p class="figure-title">各客户的变化，怎样合成整体下降？</p><p class="small">全部数据虚构 · 同口径、同长度的完整周期比较 · 单位：万元</p><div class="chart-wrap" id="contribution-wrap"><picture class="chart-fallback"><source media="(max-width:500px)" srcset="assets/contribution-mobile.png"><img src="assets/contribution.png" alt="客户甲300到210，减少90万元；客户乙200到250，增加50万元；其他300到280，减少20万元；整体800到740，减少60万元。"></picture><div class="chart" id="contribution-chart" role="img" aria-label="客户甲变化负90万元、客户乙正50万元、其他负20万元，整体负60万元。"></div></div><figcaption>客户乙的增长抵消了部分下降；只看最大的下降项，解释不了整体变化。</figcaption></figure>
+<p>定位可沿<strong>平台整体 → 客户 → 应用 → 广告转化目标 → 出价方式</strong>继续展开，每层保留重点对象和未解释部分。</p>
+<p class="small">广告转化目标指希望用户完成的行为，出价方式指参与投放的目标和规则。这里只展开一条分支，其他重点对象与未解释部分仍须保留；逐层对账要求见<a href="#check-demo">第五章的检查示例</a>。</p>
+</div>
+<h3>沿用定位结果，逐项核查原因</h3>
+<p>对已确定的重点对象，逐项记录支持证据、反证和缺失项：</p>
+<div class="table-wrap" tabindex="0"><table><caption class="small">原因核查的五个方向 · 名称为通用代称</caption><thead><tr><th scope="col">核查方向</th><th scope="col">看什么</th><th scope="col">判断边界</th></tr></thead><tbody>
+<tr><td>客户自身计划</td><td>计划启停、预算、效果要求与地区调整。</td><td>还需查为何调整；实际覆盖地区变化，不等于客户主动调整地区预算。</td></tr>
+<tr><td>广告投放效果</td><td>投放回报、各投放方式的占比及各自效果。</td><td>整体下滑可能来自构成变化，不等于每种方式都变差。</td></tr>
+<tr><td>广告系统预估</td><td>点击、转化、用户价值的预估与实际偏差，及出现时间。</td><td>连续多个周期核对实际效果和客户操作，不能因同期变化就认定原因。</td></tr>
+<tr><td>投放故障</td><td>投放或回传故障的时间、应用、地区与恢复过程。</td><td>时间吻合不够，还要看影响范围和能解释的收入变化。</td></tr>
+<tr><td>外部竞争与市场</td><td>本平台在客户全渠道获客中的占比、客户总获客量。</td><td>获客量和占比不是预算，不能直接证明预算转移。</td></tr>
 </tbody></table></div>
-<div class="callout"><h3>同样是“投入减少”，证据组合不同，判断就不同</h3><p><strong>组合一：</strong>额度下调、投入回报下降、本服务份额下降——支持“效果恶化后客户缩减投入”这一候选解释，但仍需核对先后顺序和其他因素。</p><p><strong>组合二：</strong>额度下调，但效果与份额稳定，客户同类总投入也下降——更应核查客户整体收缩，而不是先认定本服务出了问题。</p><p class="small">这是用虚构情形说明判断方法，不是真实客户结论。单个信号不够；原因分析要组合证据，也要保留反证。</p></div>
-<details><summary>哪些分析细节，不能被“故事讲通了”替代？</summary><p><strong>时间：</strong>单日异常要同时展示异常本身与剔除后的对照，不能直接删掉；技术问题要检查连续多个周期，区分先变差、后影响收入与仅仅同期相关。</p><p><strong>层级：</strong>一个客户下不同单元可能方向相反，客户平均值不能代替单元证据。地域分布变了，也不能直接证明客户主动调整了区域投入。</p><p><strong>方向与覆盖：</strong>一个因素按机制应使收入上升，但实际收入下降，就不能拿它解释下降；只影响少量对象的因素，也不能自动解释全部损失。</p><p><strong>动作：</strong>让负责相应环节的人核查具体对象，约定观察什么变化、什么证据会推翻判断。未证实的解释不能配上确定的效果承诺。</p></details>
-
+<h3>同样的下降，证据不同，解释也不同</h3>
+<p>把各方向的证据放在一起，才知道应优先核查哪种解释。以下为三种虚构情形，不是同一客户同时发生的事实：</p>
+<div class="table-wrap" tabindex="0"><table aria-label="三种虚构证据组合及待核查解释"><thead><tr><th scope="col">观察到的证据组合</th><th scope="col">优先核查的解释</th></tr></thead><tbody>
+<tr><td>投放回报先降，客户随后停计划或降预算，本平台获客占比也下降。</td><td>是否因效果变差而减少投放？</td></tr>
+<tr><td>投放回报与本平台获客占比稳定；客户降预算，全渠道获客量下降。</td><td>是否缩减了整体获客计划？</td></tr>
+<tr><td>投放回报稳定，市场需求稳定或增长；本平台收入与获客占比下降。</td><td>是否转向其他平台？预算去向仍需核实。</td></tr>
+</tbody></table></div>
+<p><strong>这些解释仍需验证：</strong>核对先后顺序、作用方向、影响范围和反证。促使收入上升的因素解释不了下降，局部问题也解释不了全部损失。证据不足时保留未知；建议写清由谁核查哪个对象、观察什么、什么证据会推翻判断，不承诺未经证实的效果。</p>
 </details>
-<p class="takeaway"><strong>可迁移的原则：把前一步的结果变成后一步明确的输入，防止分析中途换对象、换范围或跳过必要判断。</strong></p>
-<p class="chapter-next">步骤写清楚以后，怎样确认 AI 真的按要求做了，而不是只说“已完成”？</p>
+<p class="chapter-next">步骤约定了怎么做，还需要检查来决定：AI 是否已经具备进入下一步的条件。</p>
 </section>
 
 <section class="chapter" id="reliability">
@@ -154,64 +257,89 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <p class="lead">有了上章的模块，就能逐步检查：输入对不对，方法有没有落实，交出的结果是否满足要求。检查失败，应停在对应步骤处理，而不是继续写结论。</p>
 <ul class="checks"><li><b>开始前</b><p>范围、周期和必要数据是否齐全？缺失内容不能靠模型猜测补上。</p></li><li><b>分析中</b><p>是否使用规定的计算和证据？是否始终围绕前一步确定的对象？</p></li><li><b>交接前</b><p>明细能否加回整体，解释是否有支持，尚未确认的部分有没有保留？</p></li></ul>
 <p>其中，求和是否一致、对象有没有遗漏、数据是否仍有效，可以交给程序检查；业务定义是否合适、证据能否支持原因，则仍需要人的判断。两类检查互相配合，不能互相替代。</p>
-<details id="check-demo"><summary>试一个简化演示：漏掉一位客户，为什么不能继续解释原因？</summary>
-<p>虚构的两期收入为 800 万元和 740 万元，净减少 60 万元。客户甲减少 90 万元、客户乙增加 50 万元、其他减少 20 万元。三部分相加才能解释整体变化。</p>
+<div class="branch-example"><p><strong>漏掉一个增长客户，原因分析就应先暂停。</strong></p><p>沿用上例：若明细只列客户甲 −90 万元、其他 −20 万元，合计减少 110 万元，与整体减少 60 万元对不上。必须补回客户乙的 +50 万元，核对完整后再查原因。检查改变了 AI 接下来的动作，而不只是给报告加一句提醒。</p></div>
+<details id="check-demo"><summary>看一个演示：检查没通过，AI 应停在哪一步？</summary>
 <div class="demo" id="validation-demo">
-<p class="label">可交互的教学演示 · 不是实际系统运行</p><h3>把不同结果交给贡献模块，会发生什么？</h3>
-<p class="small">用上面的虚构收入数据，演示范围完整、金额对账和数据新鲜度三类检查。它是简化的教学实现，不是实际收入流程的完整校验器。</p>
-<div class="demo-controls" role="group" aria-label="选择演示情形"><button type="button" data-case="missing" aria-pressed="true">情形一：漏掉客户乙</button><button type="button" data-case="stale" aria-pressed="false">情形二：仍引用旧数据</button><button type="button" data-case="valid" aria-pressed="false">情形三：交接条件齐全</button></div>
-<div class="demo-result" id="demo-result" aria-live="polite"><h4 id="demo-title">暂停在贡献核对</h4><p id="demo-calculation">客户甲 −90 ＋ 其他 −20 ＝ −110 万元；整体变化为 −60 万元。</p><ul id="demo-reasons"><li>缺少客户乙。</li><li>分组变化合计与整体变化不一致。</li></ul></div>
-<p class="demo-scope" id="demo-next">下一步：补齐客户乙并重新对账；不能直接进入原因解释。</p>
-<noscript><p class="small">当前环境未启用脚本，上方保留“漏组”情形。其他情形与规则可查看下方文字说明。</p></noscript>
+<p class="label">独立教学演示 · 虚构数据</p><h3>这份收入明细，可以交给原因分析吗？</h3>
+<p><strong>本次问题：</strong>第4周相对第3周，平台广告收入为什么减少 60 万元？两周均为完整周期，客户名单应包括客户甲、客户乙和“其他”。</p>
+<p class="small">切换下面三份示例结果，查看程序允许 AI 继续，还是要求先修正。</p>
+<div class="demo-controls" role="group" aria-label="选择待检查的示例结果"><button type="button" data-case="missing" aria-pressed="true" aria-controls="demo-result demo-next">漏掉增长的客户乙</button><button type="button" data-case="stale" aria-pressed="false" aria-controls="demo-result demo-next">金额对上，但比较错了周次</button><button type="button" data-case="valid" aria-pressed="false" aria-controls="demo-result demo-next">客户齐全，使用本次数据</button></div>
+<div class="demo-result" id="demo-result" aria-live="polite" aria-atomic="true"><h4 id="demo-title">先暂停：客户名单不完整</h4><p id="demo-calculation">本次整体收入减少 60 万元；这份客户明细合计减少 110 万元。</p><ul id="demo-reasons"><li>缺少客户乙。</li><li>各客户收入变化相加，与整体变化不一致。</li></ul></div>
+<p class="demo-scope" id="demo-next" aria-live="polite">AI 必须先补齐客户乙，重新核对名单与金额；检查通过后，才能进入原因核查。</p>
+<noscript><p class="small">当前未启用脚本，上方展示漏掉客户乙的结果。第二种情形：本次问第4周相对第3周的变化，却引用第2周相对第1周的明细；两次恰好都减少60万元，也不能互相解释，须按本次周次取数重算。第三种情形：客户、金额及本次数据标记均通过检查，可继续核查原因，但不代表分析完成。</p></noscript>
 </div>
-<p><strong>漏组时</strong>，不能靠一段流畅解释补上差额；<strong>引用旧数据时</strong>，即使合计恰好一致，也不能据此接受结果；<strong>条件齐全时</strong>，只允许进入下一步核查，并不等于原因已证实或整篇报告已完成。</p>
-<p>这段演示程序是为讲解机制独立编写的，不调用实际 OneAsk。正式流程还需要可信的检查入口、内容指纹、执行计划和产物记录，不能只比较几个可随意填写的标签。</p>
+<p>第二种情形错在<strong>用了另一段时间的数据回答本次问题</strong>。已有结果只要比较周期、客户范围、指标口径一致，且数据仍有效，就可以复用。检查通过也只表示可以继续核查原因。</p>
+<p>同样的检查要逐层进行：客户、应用及更细层级的两期金额和变化量，都应加回上一层；“其他”和未解释差额不能丢。若某项分析方法不适用，应保留对象并注明理由，不能因此从收入总量中扣除。</p>
+<p class="small">两次变化特意设为相同金额，以说明金额对上也可能用错数据。演示只比较取数记录标签；正式流程还须核对实际查询条件、保留执行记录，并<a href="#freshness-detail">核验数据与规则的内容</a>，不能只改标签就放行。</p>
 
 </details>
-<p>在 OneAsk 的设计中，这类要求贯穿分析和交付。检查入口必须真正被执行：模型自行声称通过，或绕开检查直接输出，都不能提供同等保障。</p>
+<p>在 OneAsk 的设计中，流程必须实际调用检查程序，并依据结果决定是否继续；模型自己说“通过了”不能代替执行记录。</p>
 <h3>人怎样参与，而不是只能相信最终报告？</h3>
-<p>确认指标时，按相同范围和周期核对明细；定位问题时，核对各对象金额能否加回整体；判断原因时，查看对象级证据与反证。最终还要核对摘要、图表和明细是否一致，并读取读者实际收到的内容。文件生成成功，不等于交付内容完整。</p>
+<p>确认指标时核对同范围、同周期的明细；定位问题时把各对象金额加回整体；判断原因时看对象级证据与反证。交付时再检查读者实际收到的摘要、图表和明细是否完整一致。</p>
 <h3>一次纠错，怎样才能成为下一次的改进？</h3>
 <p>只补一句“以后注意”不够。一次改进要同时留下四类依据：</p>
-<ol class="release-proof"><li><b>规则修改</b><span>说明什么行为要改变。</span></li><li><b>失败用例</b><span>证明原来的错误会被拦住。</span></li><li><b>认可案例重跑</b><span>检查修复后仍能完成整项任务。</span></li><li><b>正式版本与内容记录</b><span>明确下次实际使用的是哪一版。</span></li></ol>
+<ol class="release-proof"><li><b>修改后的规则</b><span>说明以后要怎样分析或检查。</span></li><li><b>曾经出错的案例</b><span>重新测试，确认检查程序能发现原来的错误并暂停分析。</span></li><li><b>完整案例的重跑结果</b><span>重新运行已认可的分析案例，检查修改后仍能完成整项任务。</span></li><li><b>正式版本与内容记录</b><span>明确后续分析实际使用哪一版规则。</span></li></ol>
 <details id="freshness-detail"><summary>输入变了，为什么之前的“通过”不能直接沿用？</summary><p>可以为数据、定义和结果计算一段随内容变化而变化的标识，即<strong>内容指纹</strong>。它帮助发现前后使用的内容是否不同，但不能证明业务含义正确。</p><p>更新了数据或口径，就检查哪些结果使用了它：相关计算、图表和结论需要重新验证；未受影响且仍满足条件的部分才可以保留。仅比较几个可随意填写的标签，不足以实现这样的保障。</p></details>
-<details id="release-detail"><summary>多人同时修改方法，怎样避免互相覆盖？</summary><p>每个人先在独立候选中开发，整合后检查相互影响；正式发布前，再确认共同基线没有被其他修改更新，最后统一切换。并行的是开发，统一的是最终版本和发布记录。</p><p>局部修复还应测试未改动的相关场景，防止解决一个问题却破坏另一项能力。</p></details>
-<p class="takeaway"><strong>稳定性建设不是保证 AI 从不犯错，而是让错误可发现、可定位，并让经过验证的修复进入后续运行。</strong></p>
-<p class="chapter-next">结果有了依据和检查，接下来要解决另一件事：读者能否轻松、准确地理解它？</p>
+<details id="release-detail"><summary>多人同时修改方法，怎样避免互相覆盖？</summary><p>每个人先修改各自的副本，不直接改正在使用的正式版本。合并大家的修改后，检查它们是否互相影响；发布前，再确认正式版本有没有被别人改过，避免新发布覆盖别人的更新。开发可以同时进行，最终版本和发布记录则统一管理。</p><p>局部修复还应测试未改动的相关场景，防止解决一个问题却破坏另一项能力。</p></details>
 </section>
 
 <section class="chapter" id="writing">
 <span class="kicker">06 / 结果表达</span><h2>分析按步骤展开，报告按读者的问题组织</h2>
 <p class="lead">分析师需要先取数、比较、核查，再得到结论；读者通常先想知道发生了什么、为什么值得关注。报告不必复述整个分析过程。</p>
-<div class="comparison"><div><h3>只有概括，缺少判断依据</h3><p>本周期收入有所下降，受多种因素影响，建议持续关注并优化服务表现。</p></div><div><h3>同一案例，先给变化和依据</h3><p>服务收入从 800 万元降到 740 万元，下降 7.5%。客户甲减少 90 万元，客户乙增长抵消了 50 万元。当前先定位到重点客户，原因尚未确认，不能仅凭收入下降认定服务变差。</p></div></div>
-<p class="note">数字为虚构；这只是表达方式的对照，不是两个模型的效果实验。</p>
-<ul class="reading-layers"><li><b>答案先出现</b><span>对象、变化、重要性和判断边界。</span></li><li><b>关键证据随后</b><span>趋势回答何时变化，贡献图回答谁减少、谁抵消。</span></li><li><b>明细按需展开</b><span>保留完整记录、计算方法、排除项和来源，供需要复核的人查阅。</span></li></ul>
+<p class="note">以下模拟完成原因核查后的报告摘要。金额沿用前例，新增的投放表现、预算操作和客户反馈均为虚构情节。</p>
+<div class="comparison"><div><h3>只有概括，缺少判断依据</h3><p>本周期广告收入有所下降，受多种因素影响，建议持续关注并优化投放效果。</p></div><div><h3>回报下降引发预算收缩，重点在客户甲的应用 A</h3><p>平台广告收入从 800 万元降到 740 万元，下降 7.5%。客户甲减少 90 万元，其中应用 A 减少 80 万元；客户乙增长 50 万元，抵消了部分下降。</p><p>A 的原有投放回报稳定，但<strong>新增投放方式回报偏低、占比上升，拉低了整体回报</strong>。客户随后下调 A 的预算，操作记录与客户反馈确认：此次收缩是对回报不达预期的回应。</p><p>建议先缩小 A 中低回报方式的投放范围，保留效果稳定的部分；通过小范围验证观察整体回报能否改善，再与客户讨论恢复预算，并跟踪预算和收入变化。</p></div></div>
+<ul class="reading-layers"><li><b>答案先出现</b><span>谁发生了什么变化、为什么重要、结论适用于什么情况。</span></li><li><b>关键证据随后</b><span>趋势回答何时变化，贡献图回答谁减少、谁抵消。</span></li><li><b>明细按需展开</b><span>保留完整记录、计算方法、排除项和来源，供需要复核的人查阅。</span></li></ul>
 <p>在方案里，表达也有检查要求：摘要与明细不能出现两个版本的数字；证据放在结论附近；文字不能把相关性写成确定原因；交付后不能缺图、留着旧内容或失效链接。</p>
 <p>图表只有在帮助读者看清比较、趋势或关系时才值得保留。把分析过程画成一张复杂大图，不一定比一句清楚的解释更易读。</p>
-<p class="takeaway"><strong>保留完整分析，不意味着要求每位读者阅读全部分析过程。</strong></p>
-<p class="chapter-next">至此，一项分析从准备到交付已经完整。最后再看：哪些工作可以少做一遍，而不降低质量？</p>
 </section>
 
 <section class="chapter" id="efficiency">
 <span class="kicker">07 / 运行效率</span><h2>利用已讲清的步骤关系，减少重复工作</h2>
 <p class="lead">前面明确了每个模块需要什么、交出什么，也明确了检查要求。这些信息除了帮助拦错，还能告诉系统：哪些工作可共用，哪些必须等待。</p>
 <p>例如，把本次取得的数据连同范围、时间和定义一起固定下来，形成一份<strong>数据快照</strong>。多个计算可以使用它，不必各自重复取数；前提是权限允许，而且数据足够新、适用于这些计算。</p>
-<figure><p class="figure-title">同一份数据可以共用；需要前一步结果的工作仍要等待</p><div class="reuse"><p class="reuse-top"><strong>已核对、可供本次使用的数据快照</strong></p><p class="connector">↓ 独立计算可以并行</p><div class="reuse-branches"><div><b>趋势</b>什么时候变化</div><div><b>分布</b>变化如何分布</div><div><b>贡献</b>哪些对象带来变化</div></div><p class="reuse-bottom"><strong>需要等待的工作：</strong>原因分析要先拿到贡献分析选出的对象；报告要等必要分析与检查结束。</p></div><figcaption>后一步需要前一步结果，就是这里所说的“依赖”。并不是所有分析都能同时做，也不是所有任务都只需取一次数据。</figcaption></figure>
-<div class="three-up"><div><span class="small">减少材料重复</span><h3>只读当前需要的内容</h3><p>模型本次能读取的材料，也叫上下文。按任务加载对应知识和方法，不反复塞入整个资料库。</p></div><div><span class="small">减少外部往返</span><h3>合并相同请求</h3><p>相同条件的取数和处理尽量复用；结果本地组装后再交付，但保留最终内容核对。</p></div><div><span class="small">减少重复计算</span><h3>只重做受影响部分</h3><p>数据、定义或代码变了，沿着依赖关系重算相关结果；不能因为旧结果曾通过检查就直接复用。</p></div></div>
-<details id="execution-detail"><summary>计算很多或遇到失败时，还能怎样减少消耗？</summary><p>明确的批量计算交给程序。大文件尽量一次解析，并按顺序分批读取处理，避免反复加载整份文件；失败重试设上限，防止在同一个阻碍上耗尽调用。</p><p>不同重点对象可在数据和前置条件满足后并行分析，但不能省掉适用因素、反证或最后的汇总检查。复用也只在当前任务的输入、定义和依赖仍匹配时成立。</p></details>
-<p>这些优化改变的是执行方式，不是分析内容。判断是否真的提效，要在可比条件下观察耗时、调用和资源消耗，同时确认所需证据没有减少。本文不提供真实或虚构的提速率。</p>
-<p class="takeaway"><strong>先把工作关系讲清楚，才能有依据地并行、复用和局部重做，而不是靠省略步骤变快。</strong></p>
+<figure><p class="figure-title">同一份数据可以共用；需要前一步结果的工作仍要等待</p><div class="reuse"><p class="reuse-top"><strong>已核对、可供本次使用的数据快照</strong></p><p class="connector">↓ 独立计算可以并行</p><div class="reuse-branches"><div><b>趋势</b>什么时候变化</div><div><b>分布</b>变化如何分布</div><div><b>贡献</b>哪些对象带来变化</div></div><p class="reuse-bottom"><strong>需要等待的工作：</strong>原因分析要先拿到贡献分析选出的对象；报告要等必要分析与检查结束。</p></div><figcaption>“依赖”指后一步需要前一步的结果。数据范围不同的任务仍可能需要分别取数。</figcaption></figure>
+<div class="three-up"><div><span class="small">减少材料重复</span><h3>只读当前需要的内容</h3><p>模型本次能读取的材料，也叫上下文。按任务读取对应知识和方法，不反复塞入整个资料库。</p></div><div><span class="small">减少重复请求</span><h3>合并相同请求</h3><p>相同条件的数据和处理结果尽量共用；先在本地整理完整报告，再交付给读者，交付后仍核对实际内容。</p></div><div><span class="small">减少重复计算</span><h3>只重做受影响部分</h3><p>数据、定义或代码变了，就重算使用了这些内容的结果；不能因为旧结果曾通过检查就直接使用。</p></div></div>
+<details id="execution-detail"><summary>计算很多或遇到失败时，还能怎样减少消耗？</summary><p>计算规则明确的批量工作交给程序。大文件尽量一次解析，并按顺序分批读取处理，避免反复加载整份文件；限制失败后的重试次数，防止同一个问题反复消耗时间和调用额度。</p><p>不同重点对象所需的数据和前面步骤的结果都准备好后，可以同时分析，但不能省掉需要核查的因素、反证或最后的汇总检查。只有当前任务使用的数据、指标定义和前面步骤的结果仍然适用，才可以继续使用已有结果。</p></details>
+<p>这些优化改变的是执行方式，不是分析内容。判断是否真的提效，要在可比条件下观察耗时、调用和资源消耗，同时确认所需证据没有减少。</p>
 </section>
 
-<div class="closing"><h2>值得复用的是设计方法，不是某个案例的答案</h2>
-<p>从业务知识到指标定义，再到分析步骤、结果检查、表达和效率，方案逐层回答的是：AI 要依据什么工作，怎样完成专业判断，以及结果凭什么可以被使用。</p>
-<p>OneAsk 提供了一个把这些工作连接起来的实践例子。换成其他分析任务，业务对象和公式会变化，但共同定义、明确交接、可核对的结果和持续验证的改进，仍值得保留。</p>
-<p>这需要业务理解、数据建模、流程设计与工程实现共同投入，也需要持续维护。设计的系统性，并不等于已经消除了所有不确定性。</p>
-</div>
+<section class="chapter" id="starter">
+<span class="kicker">08 / 从零搭建</span><h2>从一张收入表开始，带 AI 完成第一次分析</h2>
+<p class="lead">先让 AI 帮你回答：“这周收入变了多少，优先看哪些客户？”不必先搭完整的 Skill 或自动取数系统。</p>
+<ul class="start-prep"><li><strong>准备：</strong>能读表、执行计算且公司允许使用的 AI 工具；获准上传的完整两周收入副本，保留原件。</li><li><strong>留作核对：</strong>同范围的周报总额与完整客户名单。不清楚怎么算，先问报表负责人。</li></ul>
+<div class="start-path" aria-label="首次分析的四步顺序"><a href="#starter-read"><span>01</span>上传确认</a><a href="#starter-check"><span>02</span>计算核对</a><a href="#starter-save"><span>03</span>保存方法</a><a href="#starter-rerun"><span>04</span>独立重跑</a></div>
+<ol class="start-steps" role="list">
+<li id="starter-read">
+<h3><span class="start-num">01</span>上传表格，先确认它读对了</h3>
+<div class="start-row"><div><span class="start-label">你要做</span><p>用“日期、客户代号、当日广告收入”明细，比较两个已结束、数据已到齐的完整周。每行是一位客户一天的收入，不混入合计行。</p></div><div class="start-check"><span class="start-label">确认后再继续</span><p>字段含义、日期、客户数、时区和单位与原表一致。缺数先问，不自行补零或删行。</p></div></div>
+<blockquote class="start-quote">“先不要分析。请告诉我：表里有哪些客户、覆盖哪些日期、金额代表什么，有没有缺失或重复？”</blockquote>
+<details><summary>展开完整读表请求</summary><p>以下日期仅作示例，请替换为实际日期、时区和单位。</p><blockquote>先不要写结论。请读取附件，列出行数、日期范围、客户数，并解释各列含义。我要比较 2026 年 5 月 11—17 日与 5 月 4—10 日的平台广告收入，日期按北京时间，金额单位为元。检查缺日期、空金额和重复的“客户＋日期”记录，有疑问先问我，不要自行补零或删行。</blockquote><p>例如，若它把平台广告收入理解成客户自己的营业收入，就在此纠正。读不到文件时，先解决格式或权限问题，不继续写报告。</p></details>
+</li>
+<li id="starter-check">
+<h3><span class="start-num">02</span>拿到对照表，先对数再写结论</h3>
+<div class="start-row"><div><span class="start-label">你要做</span><p>让 AI 实际计算并导出：每个客户的两周收入、变化金额和合计，增长、下降都保留。</p></div><div class="start-check"><span class="start-label">对上后再继续</span><p>总额、名单与周报一致；抽查一增一减，客户变化之和等于整体变化。</p></div></div>
+<figure class="start-diff"><figcaption>虚构错误示例：两份结果对不上，先别改结论</figcaption><div class="start-diff-values"><p>AI 客户明细合计<strong>减少 110 万元</strong></p><span aria-label="不等于">≠</span><p>已核对的周报<strong>减少 60 万元</strong></p></div></figure>
+<p>先查日期、单位和客户遗漏，找到差异后重算。核对通过，再请 AI 概括整体变化、主要下降客户和增长抵消；<strong>收入表本身不能证明原因。</strong></p>
+<details><summary>展开计算请求与差额追问</summary><blockquote>请实际执行计算，导出完整客户对照表，包含两周收入、变化金额和合计行；增长与下降都保留，并保存计算过程。先让我核对，不急着写结论，也不推测客户为什么少投。</blockquote><p>发现差额时，指出具体差异：</p><blockquote>你的明细合计减少 110 万元，但我核对的周报只减少 60 万元。请列出计算使用的日期和客户，检查是否漏了增长客户；找到差异后重算，不要直接改最终数字。</blockquote></details>
+</li>
+<li id="starter-save">
+<h3><span class="start-num">03</span>把方法存成文件，不只留在聊天里</h3>
+<div class="start-row"><div><span class="start-label">你要做</span><p>请 AI 整理《每周收入分析说明》，连同实际计算文件下载，和数据副本放在一起。</p></div><div class="start-check"><span class="start-label">打开文件检查</span><p>本次纠正的规则已写入；日期可替换，没有把本次金额当作固定答案。</p></div></div>
+<details><summary>展开保存方法的请求</summary><blockquote>把确认过的字段含义、比较周期的填写方式、计算步骤、核对方法和缺数时暂停的要求，整理成《每周收入分析说明》。保存实际用过的计算文件，下次重新运行；不要把本次金额写成固定答案。</blockquote><p>无法导出说明时，可复制到文档；实际计算过程也要保留，缺了先补齐，再测试复用。</p></details>
+</li>
+<li id="starter-rerun">
+<h3><span class="start-num">04</span>开新对话，看是否还需临场提醒</h3>
+<p>保持同一工具和模型，只提供数据、说明和计算文件，请 AI 按说明执行，<strong>不附上一轮答案</strong>。</p>
+<ul class="start-tests"><li><strong>同一数据重跑</strong><span>数字与口径一致，措辞不必相同。</span></li><li><strong>换一组完整周</strong><span>更新起止日期，与对应周报核对，不套旧日期、旧数字。</span></li><li><strong>副本中删一天</strong><span>指出缺失并暂停，而不是照常给结论。</span></li></ul>
+<p class="start-note">测试漏客户时，须另给独立核对过的完整名单或总额；没有依据，AI 无法凭空发现遗漏。</p>
+</li>
+</ol>
+<p class="start-next"><strong>没通过：</strong>修正对应说明或计算，留好出错样例，再开新对话测试。<strong>通过后：</strong>每次只加一种能力，如接只读数据接口或加入投放效果查原因；保留旧版，并重跑旧案例。</p>
+</section>
 <footer><div class="sources" id="notes"><h2>材料与示例说明</h2><ol>
-<li id="cite-1">依据作者的 OneAsk 设计实践与收入分析方法整理。本文保留分析顺序、贡献拆解、原因核查和工程控制的基本方法；用通用称呼解释，不公开原始指标名称、业务字段、内部来源、实际部署关系或实现文件。方案说明不等于效果认证。</li>
-<li id="cite-2">客户甲、客户乙、业务单元 A、“服务收入”“投入回报比”等均为讲解用代称，不提供与原始名称的对应关系。全部数字、具体事件与错误输入为独立虚构，不是对真实业务数据的改名或缩放。可查看<a href="assets/demo-data.json" target="_blank" rel="noopener">完整虚构数据</a>及<a href="assets/demo-logic.js" target="_blank" rel="noopener">独立校验演示代码</a>。</li>
-</ol><p>演示只帮助理解结构与原理，不代表实际系统的测试覆盖、业务收益或运行性能。真实使用仍需授权数据、可信定义与相应人工审阅。</p><p class="footnote">AI 分析方案 · OneAsk 实践案例 · 对外分享修订稿<br>本稿不替代组织要求的对外披露审批。</p></div></footer>
+<li id="cite-1">依据作者的 OneAsk 设计实践与广告收入分析方法整理。</li>
+<li id="cite-2">客户甲、应用 A 及指标名称均为通用代称，无内部名称对应关系。数字、事件与错误输入独立虚构，不是对真实业务数据改名或缩放，不披露内部字段、产品名或客户信息。可查看<a href="assets/demo-data.json" target="_blank" rel="noopener">完整虚构数据</a>及<a href="assets/demo-logic.js" target="_blank" rel="noopener">独立校验演示代码</a>。</li>
+</ol><p>演示不证明实际系统的测试覆盖、业务收益或运行性能。真实使用仍需数据授权、可信定义与人工审阅。</p><p class="footnote">AI 分析方案 · OneAsk 实践案例 · 对外分享修订稿<br>本稿不替代组织要求的对外披露审批。</p></div></footer>
 </main></div>
 <script src="./_shared/js/echarts.min.js"></script>
 <script src="./assets/chart-options.js"></script>

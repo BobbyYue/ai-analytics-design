@@ -1,6 +1,6 @@
 {
-  "disclosure": "The article preserves the revenue-analysis path and basic methods. Entity and metric labels are generic aliases. All amounts and concrete example events are independently fictional, not renamed or scaled production data. The validator is an independent teaching implementation, not a production run.",
-  "metric": "服务收入（通用代称）",
+  "disclosure": "The article preserves the advertising-platform revenue-analysis scenario and methods. Customer, app and internal metric names use generic aliases. Platform ad revenue is distinct from advertiser-side return. All amounts and concrete example events are independently fictional, not renamed or scaled production data. The validator is an independent teaching implementation, not a production run.",
+  "metric": "广告收入（通用代称）",
   "unit": "万元",
   "period": "同口径、同长度的两个完整演示周期",
   "before_total": 800,
@@ -13,13 +13,13 @@
   "hierarchy_example": {
     "parent": "客户甲",
     "children": [
-      {"name": "业务单元 A", "before": 180, "after": 100},
-      {"name": "其余单元", "before": 120, "after": 110}
+      {"name": "应用 A", "before": 180, "after": 100},
+      {"name": "其余应用", "before": 120, "after": 110}
     ]
   },
   "ratio_example": {
-    "metric": "投入回报比（通用代称）",
-    "definition": "客户产出金额除以投入金额，衡量客户的投入效果，不等于本服务收入。",
+    "metric": "投放回报（通用代称）",
+    "definition": "广告带来的用户在约定观察期内产生的回报金额，除以对应广告花费；衡量客户的广告投放效果，不是平台广告收入。",
     "unit": "金额均为万元；比值以百分比表示",
     "numerators": [4, 12],
     "denominators": [10, 60]

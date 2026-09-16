@@ -30,6 +30,7 @@
     document.getElementById('demo-next').textContent = result.next;
   }
   demoButtons.forEach(b => b.addEventListener('click', () => renderCase(b.dataset.case)));
+  renderCase('missing');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
