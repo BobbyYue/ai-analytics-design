@@ -129,16 +129,15 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <header id="opening">
 <p class="kicker">AI 数据分析 · 设计与实践</p>
 <h1>把 AI 数据分析，<span>做成可复用的方案</span></h1>
-<p class="dek">从理解业务、算清指标，到安排分析、检查结果与减少重复工作。</p>
-<p class="intro">一次回答可以靠临场提示；可复用的分析还需要统一业务背景、指标算法和分析方法，并能逐步核对结果。</p>
-<p class="intro">以 OneAsk 的广告收入分析实践为例，看一套可复用的 AI 分析方案怎样搭建。<sup><a href="#cite-1">[1]</a></sup></p>
+<p class="intro">给 AI 一份数据，再输入“分析收入为什么下降”，是在请它完成一次任务。但收入应该怎么算、先查哪些客户、哪些证据才能支持原因判断，这些专业要求，并不会因为提出了问题就自动变得明确。</p>
+<p class="intro">建立系统性的 AI 分析能力，就是<strong>把这些要求真正落到分析过程中</strong>：让 AI 有业务知识可查，有明确的数据计算规则，有可以执行的分析步骤，也有结果不符合要求时的检查和纠错方式。分析师的经验不再只靠每次临场补充，而成为系统能够持续使用和改进的一部分。</p>
+<p class="intro">本文以 OneAsk 的广告收入分析实践为例，介绍这套能力如何从零搭建，以及知识、数据、方法和工程设计如何共同支撑一次专业分析。<sup><a href="#cite-1">[1]</a></sup></p>
 <p class="scope-note">案例沿用广告收入分析的方法，名称采用通用代称，数字与事件独立虚构。演示用于解释设计，不代表真实运行结果、准确率或提速效果。</p>
 </header>
 
 <section class="chapter" id="structure">
 <span class="kicker">01 / 整体方案</span><h2>先把分析需要的准备做好，再让 AI 执行</h2>
-<p class="lead">一条“分析上周广告收入为什么下降”的要求，并没有说明收入怎么算、哪些解释值得检查、什么样的结果才算可信。这些往往是分析师凭经验补上的。</p>
-<p>把这些经验提前整理好，每次分析按需使用；运行中发现的问题，经过核实和验证后再用于改进规则。</p>
+<p class="lead">把分析经验提前整理好，每次分析按需使用；运行中发现的问题，经过核实和验证后再用于改进规则。</p>
 <figure class="oa-plan" aria-labelledby="oa-plan-title">
 <figcaption class="oa-plan-title" id="oa-plan-title">一次分析如何推进，反馈如何进入下一次</figcaption>
 <div class="oa-cycle">
@@ -170,7 +169,7 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 </div>
 </figure>
 <p>人确认业务问题、指标定义和结论边界；AI 理解材料、组织分析与表达；规则明确的计算交给程序。</p>
-<div class="callout"><h3>与临时写一个 Prompt 相比，差别在哪里？</h3><p>背景、算法、方法与检查要求被事先整理，下一次不必重新交代。能力来自这些配套条件，Skill 只是组织它们的方式；一条 Prompt 获得同样的条件，也可能完成同样好的分析。</p></div>
+<div class="callout"><h3>与临时写一个 Prompt 相比，差别在哪里？</h3><p>Skill 将知识、规则和方法组织起来，但不是分析能力的唯一来源；一条 Prompt 获得同样的资料、工具和检查条件，也可能完成同样好的分析。</p></div>
 <p>搭建时，先选一个分析师熟悉的问题，用一份认可的案例跑通从数据到报告的全过程，再扩展场景。范围越大，定义和方法的维护成本越高。</p>
 </section>
 
@@ -178,17 +177,17 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <span class="kicker">02 / 业务知识</span><h2>给 AI 的不只是资料，还要有判断依据</h2>
 <p class="lead">资料能解释“这是什么”；专业分析还需要知道“什么变化可能意味着什么，以及什么情况下不能这样判断”。</p>
 <p>以广告平台为例，客户是投放广告的广告主。下文“客户收入下降”指<strong>这位客户为平台带来的广告收入减少</strong>，不是客户自己的营业收入下降。要解释变化，需要区分投放效果、客户计划和外部竞争等不同原因。</p>
-<div class="definition-card"><p class="label">把一条分析经验整理成可使用的知识</p><h3>客户少投广告，不一定是投放效果变差</h3>
+<div class="definition-card"><h3>客户少投广告，不一定是投放效果变差</h3>
 <dl class="definition"><dt>为什么可能</dt><dd>广告带来的回报下降，可能使客户减少投放；客户主动缩减整体获客计划、调整预算分配，也可能带来同样变化。</dd><dt>要看什么</dt><dd>广告投放回报是否下降？客户是否新建或暂停广告计划、调整预算和效果要求？各渠道合计的获客量、本平台在其中的占比有没有变化？还要核对先后顺序。</dd><dt>什么会反驳</dt><dd>如果本平台的投放回报和获客占比都稳定，而客户各渠道合计的获客量下降，就应先核查客户是否缩减整体计划，不能直接认定本平台广告效果变差。</dd></dl></div>
-<p>把概念、关系、适用条件、证据和反例一起保存，就形成了可供分析使用的<strong>知识库</strong>。它提供判断依据，而不是替每种现象预写答案。OneAsk 的收入分析据此检查客户计划、投放效果、系统预估、投放故障和外部竞争，具体方法见第四章。</p>
-<details id="knowledge-detail"><summary>知识怎样维护，才能避免过期经验继续被使用？</summary><p>每条知识还需要来源、适用范围、有效时间和维护责任。同一种现象，在不同产品和规则下可能有不同含义，不能把某个案例的解释直接变成通用结论。</p><p>这里的“教给 AI”，主要指运行时让模型读取并使用这些材料，不是重新训练模型参数。方便检索只是起点，来源是否可信、规则是否仍有效同样重要。</p></details>
+<p>把概念、关系、适用条件、证据和反例一起保存，就形成了可供分析使用的<strong>知识库</strong>。它提供判断依据，而不是替每种现象预写答案。</p>
+<details id="knowledge-detail"><summary>知识怎样维护，才能避免过期经验继续被使用？</summary><p>每条知识还需要来源、适用范围、有效时间和维护责任。同一种现象，在不同产品和规则下可能有不同含义，不能把某个案例的解释直接变成通用结论。</p><p>这里的“教给 AI”，主要指运行时让模型读取并使用这些材料，不是重新训练模型参数。</p></details>
 <p class="chapter-next">这些知识指出应该看什么。接下来，要把“投放效果”“收入”等概念变成口径明确、可以核对的数字。</p>
 </section>
 
 <section class="chapter" id="metrics">
 <span class="kicker">03 / 指标基建</span><h2>让同一个问题，在各个环节都算同一个数</h2>
 <p class="lead">“收入下降”里的“收入”是一个指标；哪些金额算进去、按哪个日期归属、用什么单位，就是它的计算口径。含义相似，不代表算法相同。</p>
-<p>知识库帮助 AI 理解业务；<strong>指标库</strong>则把业务概念落实到可重复计算的规则，并指出数据在哪里。两者相连，但不能互相替代。</p>
+<p>知识库帮助 AI 理解业务；<strong>指标库</strong>则把业务概念落实到可重复计算的规则，并指出数据在哪里。</p>
 <div class="three-up">
 <div><span class="small">业务含义</span><h3>这个数指什么</h3><p>例如“广告收入”，指平台从客户投放中获得的收入，不是客户通过广告获得的回报。</p></div>
 <div><span class="small">计算规则</span><h3>按什么规则算</h3><p>限定范围、日期和金额单位，再汇总；同一金额不能重复累计。</p></div>
@@ -241,7 +240,7 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <tr><td>外部竞争与市场</td><td>本平台在客户全渠道获客中的占比、客户总获客量。</td><td>获客量和占比不是预算，不能直接证明预算转移。</td></tr>
 </tbody></table></div>
 <h3>同样的下降，证据不同，解释也不同</h3>
-<p>把各方向的证据放在一起，才知道应优先核查哪种解释。以下为三种虚构情形，不是同一客户同时发生的事实：</p>
+<p>以下为三种虚构情形，不是同一客户同时发生的事实：</p>
 <div class="table-wrap" tabindex="0"><table aria-label="三种虚构证据组合及待核查解释"><thead><tr><th scope="col">观察到的证据组合</th><th scope="col">优先核查的解释</th></tr></thead><tbody>
 <tr><td>投放回报先降，客户随后停计划或降预算，本平台获客占比也下降。</td><td>是否因效果变差而减少投放？</td></tr>
 <tr><td>投放回报与本平台获客占比稳定；客户降预算，全渠道获客量下降。</td><td>是否缩减了整体获客计划？</td></tr>
@@ -270,7 +269,7 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 </div>
 <p>第二种情形错在<strong>用了另一段时间的数据回答本次问题</strong>。已有结果只要比较周期、客户范围、指标口径一致，且数据仍有效，就可以复用。检查通过也只表示可以继续核查原因。</p>
 <p>同样的检查要逐层进行：客户、应用及更细层级的两期金额和变化量，都应加回上一层；“其他”和未解释差额不能丢。若某项分析方法不适用，应保留对象并注明理由，不能因此从收入总量中扣除。</p>
-<p class="small">两次变化特意设为相同金额，以说明金额对上也可能用错数据。演示只比较取数记录标签；正式流程还须核对实际查询条件、保留执行记录，并<a href="#freshness-detail">核验数据与规则的内容</a>，不能只改标签就放行。</p>
+<p class="small">演示只比较取数记录标签；正式流程还须核对实际查询条件、保留执行记录，并<a href="#freshness-detail">核验数据与规则的内容</a>，不能只改标签就放行。</p>
 
 </details>
 <p>在 OneAsk 的设计中，流程必须实际调用检查程序，并依据结果决定是否继续；模型自己说“通过了”不能代替执行记录。</p>
@@ -290,17 +289,17 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <div class="comparison"><div><h3>只有概括，缺少判断依据</h3><p>本周期广告收入有所下降，受多种因素影响，建议持续关注并优化投放效果。</p></div><div><h3>回报下降引发预算收缩，重点在客户甲的应用 A</h3><p>平台广告收入从 800 万元降到 740 万元，下降 7.5%。客户甲减少 90 万元，其中应用 A 减少 80 万元；客户乙增长 50 万元，抵消了部分下降。</p><p>A 的原有投放回报稳定，但<strong>新增投放方式回报偏低、占比上升，拉低了整体回报</strong>。客户随后下调 A 的预算，操作记录与客户反馈确认：此次收缩是对回报不达预期的回应。</p><p>建议先缩小 A 中低回报方式的投放范围，保留效果稳定的部分；通过小范围验证观察整体回报能否改善，再与客户讨论恢复预算，并跟踪预算和收入变化。</p></div></div>
 <ul class="reading-layers"><li><b>答案先出现</b><span>谁发生了什么变化、为什么重要、结论适用于什么情况。</span></li><li><b>关键证据随后</b><span>趋势回答何时变化，贡献图回答谁减少、谁抵消。</span></li><li><b>明细按需展开</b><span>保留完整记录、计算方法、排除项和来源，供需要复核的人查阅。</span></li></ul>
 <p>在方案里，表达也有检查要求：摘要与明细不能出现两个版本的数字；证据放在结论附近；文字不能把相关性写成确定原因；交付后不能缺图、留着旧内容或失效链接。</p>
-<p>图表只有在帮助读者看清比较、趋势或关系时才值得保留。把分析过程画成一张复杂大图，不一定比一句清楚的解释更易读。</p>
+<p>图表只有在帮助读者看清比较、趋势或关系时才值得保留。</p>
 </section>
 
 <section class="chapter" id="efficiency">
 <span class="kicker">07 / 运行效率</span><h2>利用已讲清的步骤关系，减少重复工作</h2>
-<p class="lead">前面明确了每个模块需要什么、交出什么，也明确了检查要求。这些信息除了帮助拦错，还能告诉系统：哪些工作可共用，哪些必须等待。</p>
+<p class="lead">哪些分析可以共用数据、同时进行，哪些必须等待前一步，取决于每一步需要什么输入。</p>
 <p>例如，把本次取得的数据连同范围、时间和定义一起固定下来，形成一份<strong>数据快照</strong>。多个计算可以使用它，不必各自重复取数；前提是权限允许，而且数据足够新、适用于这些计算。</p>
-<figure><p class="figure-title">同一份数据可以共用；需要前一步结果的工作仍要等待</p><div class="reuse"><p class="reuse-top"><strong>已核对、可供本次使用的数据快照</strong></p><p class="connector">↓ 独立计算可以并行</p><div class="reuse-branches"><div><b>趋势</b>什么时候变化</div><div><b>分布</b>变化如何分布</div><div><b>贡献</b>哪些对象带来变化</div></div><p class="reuse-bottom"><strong>需要等待的工作：</strong>原因分析要先拿到贡献分析选出的对象；报告要等必要分析与检查结束。</p></div><figcaption>“依赖”指后一步需要前一步的结果。数据范围不同的任务仍可能需要分别取数。</figcaption></figure>
+<figure><p class="figure-title">同一份数据可以共用；需要前一步结果的工作仍要等待</p><div class="reuse"><p class="reuse-top"><strong>已核对、可供本次使用的数据快照</strong></p><p class="connector">↓ 独立计算可以并行</p><div class="reuse-branches"><div><b>趋势</b>什么时候变化</div><div><b>分布</b>变化如何分布</div><div><b>贡献</b>哪些对象带来变化</div></div><p class="reuse-bottom"><strong>需要等待的工作：</strong>原因分析要先拿到贡献分析选出的对象；报告要等必要分析与检查结束。</p></div><figcaption>数据范围不同的任务仍可能需要分别取数。</figcaption></figure>
 <div class="three-up"><div><span class="small">减少材料重复</span><h3>只读当前需要的内容</h3><p>模型本次能读取的材料，也叫上下文。按任务读取对应知识和方法，不反复塞入整个资料库。</p></div><div><span class="small">减少重复请求</span><h3>合并相同请求</h3><p>相同条件的数据和处理结果尽量共用；先在本地整理完整报告，再交付给读者，交付后仍核对实际内容。</p></div><div><span class="small">减少重复计算</span><h3>只重做受影响部分</h3><p>数据、定义或代码变了，就重算使用了这些内容的结果；不能因为旧结果曾通过检查就直接使用。</p></div></div>
 <details id="execution-detail"><summary>计算很多或遇到失败时，还能怎样减少消耗？</summary><p>计算规则明确的批量工作交给程序。大文件尽量一次解析，并按顺序分批读取处理，避免反复加载整份文件；限制失败后的重试次数，防止同一个问题反复消耗时间和调用额度。</p><p>不同重点对象所需的数据和前面步骤的结果都准备好后，可以同时分析，但不能省掉需要核查的因素、反证或最后的汇总检查。只有当前任务使用的数据、指标定义和前面步骤的结果仍然适用，才可以继续使用已有结果。</p></details>
-<p>这些优化改变的是执行方式，不是分析内容。判断是否真的提效，要在可比条件下观察耗时、调用和资源消耗，同时确认所需证据没有减少。</p>
+<p>判断是否真的提效，要在可比条件下观察耗时、调用和资源消耗，同时确认所需证据没有减少。</p>
 </section>
 
 <section class="chapter" id="starter">
@@ -339,7 +338,7 @@ details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);pad
 <footer><div class="sources" id="notes"><h2>材料与示例说明</h2><ol>
 <li id="cite-1">依据作者的 OneAsk 设计实践与广告收入分析方法整理。</li>
 <li id="cite-2">客户甲、应用 A 及指标名称均为通用代称，无内部名称对应关系。数字、事件与错误输入独立虚构，不是对真实业务数据改名或缩放，不披露内部字段、产品名或客户信息。可查看<a href="assets/demo-data.json" target="_blank" rel="noopener">完整虚构数据</a>及<a href="assets/demo-logic.js" target="_blank" rel="noopener">独立校验演示代码</a>。</li>
-</ol><p>演示不证明实际系统的测试覆盖、业务收益或运行性能。真实使用仍需数据授权、可信定义与人工审阅。</p><p class="footnote">AI 分析方案 · OneAsk 实践案例 · 对外分享修订稿<br>本稿不替代组织要求的对外披露审批。</p></div></footer>
+</ol><p>演示不证明实际系统的测试覆盖、业务收益或运行性能。真实使用仍需数据授权、可信定义与人工审阅。</p><p class="footnote">本稿不替代组织要求的对外披露审批。</p></div></footer>
 </main></div>
 <script src="./_shared/js/echarts.min.js"></script>
 <script src="./assets/chart-options.js"></script>
